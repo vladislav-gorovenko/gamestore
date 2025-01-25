@@ -1,1 +1,32 @@
-POST http://localhost:5142/who-is-nastya
+POST http://localhost:5142/who-is-nastya;
+
+###
+GET http://localhost:5142/games
+
+###
+GET http://localhost:5142/games/4
+
+###
+POST http://localhost:5142/games
+Content-Type: application/json
+
+{
+  "name": "Minecraft",
+  "genre": "Kids and family",
+  "price": 19.99,
+  "releaseDate": "2011-01-01"
+}
+
+###
+PUT http://localhost:5142/games/4
+Content-Type: application/json
+
+{
+  "name": "Minecraft",
+  "genre": "Kids and family",
+  "price": 30,
+  "releaseDate": "2011-01-01"
+}
+
+###
+DELETE http://localhost:5142/games/4
