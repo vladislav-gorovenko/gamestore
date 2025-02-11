@@ -4,26 +4,26 @@ POST http://localhost:5142/who-is-nastya;
 GET http://localhost:5142/games
 
 ###
-GET http://localhost:5142/games/4
+GET http://localhost:5142/games/5
 
 ###
 POST http://localhost:5142/games
 Content-Type: application/json
 
 {
-  "name": "Minecraft",
-  "genre": "Kids and family",
+  "name": "Vlad",
+  "genreId": 3,
   "price": 19.99,
   "releaseDate": "2011-01-01"
 }
 
 ###
-PUT http://localhost:5142/games/4
+PUT http://localhost:5142/games/5
 Content-Type: application/json
 
 {
   "name": "Minecraft",
-  "genre": "Kids and family",
+  "genreId": 2,
   "price": 30,
   "releaseDate": "2011-01-01"
 }
