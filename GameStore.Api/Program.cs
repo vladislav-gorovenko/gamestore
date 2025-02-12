@@ -8,6 +8,6 @@ builder.Services.AddSqlite<GameStoreContext>(connectionString); // AddScoped
 
 var app = builder.Build();
 app.MapGamesEndpoints();
-app.MigrateDb();
+await app.MigrateDbAsync();
 
 app.Run();
