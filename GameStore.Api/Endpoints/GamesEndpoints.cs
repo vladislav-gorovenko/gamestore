@@ -17,7 +17,7 @@ public static class GamesEndpoints
         // GET /games
         group.MapGet("/", async (GameStoreContext dbContext) =>
         {
-            List<GameDTO> games = await dbContext.Games.Include(game => game.Genre).Select(game => game.ToDTO()).AsNoTracking().ToListAsync();
+            List<GameDto> games = await dbContext.Games.Include(game => game.Genre).Select(game => game.ToDTO()).AsNoTracking().ToListAsync();
             return games;
         });
 
@@ -27,13 +27,13 @@ public static class GamesEndpoints
             Game? game = await dbContext.Games
                 .Include(game => game.Genre)
                 .FirstOrDefaultAsync(game => game.Id == id);
-            GameDTO? gameDto = game?.ToDTO();
+            GameDto? gameDto = game?.ToDTO();
             return game is null ? Results.NotFound() : Results.Ok(gameDto);
 
         }).WithName(GetGameEndpointName);
 
         // POST /games
-        group.MapPost("/", async (CreateGameDTO newGame, GameStoreContext dbContext) =>
+        group.MapPost("/", async (CreateGameDto newGame, GameStoreContext dbContext) =>
             {
                 Game game = newGame.ToEntity();
                 game.Genre = await dbContext.Genres.FindAsync(newGame.GenreId);
@@ -41,14 +41,14 @@ public static class GamesEndpoints
                 dbContext.Games.Add(game);
                 dbContext.SaveChanges();
                 
-                GameDTO gameDTO = game.ToDTO();
+                GameDto gameDTO = game.ToDTO();
                 
                 return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, gameDTO);
             })
             .WithParameterValidation();
 
         // POST /update
-        group.MapPut("/{id}", async (int id, UpdateGameDTO updateGame, GameStoreContext dbContext) =>
+        group.MapPut("/{id}", async (int id, UpdateGameDto updateGame, GameStoreContext dbContext) =>
         {
             Game? existingGame = await dbContext.Games.FindAsync(id);
             if (existingGame is null)

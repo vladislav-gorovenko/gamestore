@@ -5,7 +5,7 @@ namespace GameStore.Api.Mapping;
 
 public static class GameMapping
 {
-    public static Game ToEntity(this CreateGameDTO game)
+    public static Game ToEntity(this CreateGameDto game)
     {
         return new Game()
         {
@@ -16,7 +16,7 @@ public static class GameMapping
         };
     }   
     
-    public static Game ToEntity(this UpdateGameDTO game, int gameId)
+    public static Game ToEntity(this UpdateGameDto game, int gameId)
     {
         return new Game()
         {
@@ -28,8 +28,8 @@ public static class GameMapping
         };
     }
 
-    public static GameDTO ToDTO(this Game game)
+    public static GameDto ToDTO(this Game game)
     {
-        return new GameDTO(game.Id, game.Name, game.Genre.Id,game.Genre!.Name, game.Price, game.ReleaseDate);
+        return new GameDto(game.Id, game.Name, game.Genre.Id,game.Genre!.Name, game.Price, game.ReleaseDate);
     }
 }

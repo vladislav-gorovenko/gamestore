@@ -1,5 +1,3 @@
-POST http://localhost:5142/who-is-nastya;
-
 ###
 GET http://localhost:5142/games
 
